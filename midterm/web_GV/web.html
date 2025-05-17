@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống chia sẻ tài liệu học tập</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            background-color: #ddd;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .tab.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .file-list {
+            margin-top: 20px;
+        }
+        
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .file-info {
+            flex-grow: 1;
+        }
+        
+        .file-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .file-details {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .file-actions a {
+            background-color: #2ecc71;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .login-form {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .subject-filter {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hệ thống chia sẻ tài liệu học tập</h1>
+    </header>
+    
+    <div class="container" id="login-container">
+        <div class="login-form">
+            <h2>Đăng nhập</h2>
+            <div class="form-group">
+                <label for="username">Tên đăng nhập:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu:</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Vai trò:</label>
+                <select id="role">
+                    <option value="student">Học sinh</option>
+                    <option value="teacher">Giáo viên</option>
+                </select>
+            </div>
+            <button onclick="login()">Đăng nhập</button>
+        </div>
+    </div>
+    
+    <div class="container" id="main-container" style="display: none;">
+        <div class="tabs">
+            <button class="tab active" onclick="openTab('files')">Tài liệu</button>
+            <button class="tab" onclick="openTab('upload')" id="upload-tab" style="display: none;">Tải lên</button>
+            <button class="tab" onclick="logout()">Đăng xuất</button>
+        </div>
+        
+        <div id="files" class="tab-content active">
+            <h2>Danh sách tài liệu</h2>
+            
+            <div class="subject-filter">
+                <label for="subject-select">Lọc theo môn học:</label>
+                <select id="subject-select" onchange="filterFiles()">
+                    <option value="all">Tất cả môn học</option>
+                    <option value="math">Toán học</option>
+                    <option value="physics">Vật lý</option>
+                    <option value="chemistry">Hóa học</option>
+                    <option value="literature">Ngữ văn</option>
+                    <option value="english">Tiếng Anh</option>
+                </select>
+            </div>
+            
+            <div class="file-list" id="file-list">
+                <!-- File items will be added here -->
+            </div>
+        </div>
+        
+        <div id="upload" class="tab-content">
+            <h2>Tải lên tài liệu mới</h2>
+            <div class="form-group">
+                <label for="file-name">Tên tài liệu:</label>
+                <input type="text" id="file-name" required>
+            </div>
+            <div class="form-group">
+                <label for="file-subject">Môn học:</label>
+                <select id="file-subject">
+                    <option value="math">Toán học</option>
+                    <option value="physics">Vật lý</option>
+                    <option value="chemistry">Hóa học</option>
+                    <option value="literature">Ngữ văn</option>
+                    <option value="english">Tiếng Anh</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="file-description">Mô tả:</label>
+                <textarea id="file-description" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="file-upload">Chọn file:</label>
+                <input type="file" id="file-upload">
+            </div>
+            <button onclick="uploadFile()">Tải lên</button>
+        </div>
+    </div>
+    
+    <script>
+        // Mock data for demonstration
+        const mockFiles = [
+            { id: 1, name: "Bài tập Toán đại số", subject: "math", description: "Bài tập về phương trình bậc hai", uploadDate: "10/04/2025", teacher: "Nguyễn Văn A" },
+            { id: 2, name: "Đề kiểm tra Vật lý", subject: "physics", description: "Đề kiểm tra 1 tiết về Chuyển động thẳng đều", uploadDate: "09/04/2025", teacher: "Trần Thị B" },
+            { id: 3, name: "Bài tập Hóa học", subject: "chemistry", description: "Bài tập về Bảng tuần hoàn", uploadDate: "08/04/2025", teacher: "Lê Văn C" },
+            { id: 4, name: "Bài tập Ngữ văn", subject: "literature", description: "Bài tập phân tích tác phẩm Truyện Kiều", uploadDate: "07/04/2025", teacher: "Phạm Thị D" },
+            { id: 5, name: "Bài tập Tiếng Anh", subject: "english", description: "Bài tập về thì hiện tại hoàn thành", uploadDate: "06/04/2025", teacher: "Hoàng Văn E" }
+        ];
+        
+        // Current user role
+        let currentRole = null;
+        
+        // Function to display files
+        function loadFiles() {
+            fetch('files.php')
+            .then(res => res.json())
+            .then(data => {
+                displayFiles(data);
+            });
+        }
+
+        
+        // Filter files by subject
+        function filterFiles() {
+            const subject = document.getElementById('subject-select').value;
+            let filteredFiles = mockFiles;
+            
+            if (subject !== 'all') {
+                filteredFiles = mockFiles.filter(file => file.subject === subject);
+            }
+            
+            displayFiles(filteredFiles);
+        }
+        
+        // Get subject name from code
+        function getSubjectName(subjectCode) {
+            const subjects = {
+                'math': 'Toán học',
+                'physics': 'Vật lý',
+                'chemistry': 'Hóa học',
+                'literature': 'Ngữ văn',
+                'english': 'Tiếng Anh'
+            };
+            
+            return subjects[subjectCode] || subjectCode;
+        }
+        
+        // Download file (mock)
+        function downloadFile(fileId) {
+            alert(`Đang tải xuống file với ID: ${fileId}`);
+            // In a real application, this would trigger a download
+        }
+        
+        // Upload file (mock)
+        function uploadFile() {
+            const fileName = document.getElementById('file-name').value;
+            const fileSubject = document.getElementById('file-subject').value;
+            const fileDescription = document.getElementById('file-description').value;
+            const fileUpload = document.getElementById('file-upload').files[0];
+
+            if (!fileName || !fileUpload) {
+                alert('Vui lòng nhập tên và chọn file');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('fileName', fileName);
+            formData.append('subject', fileSubject);
+            formData.append('description', fileDescription);
+            formData.append('teacher', 'Giáo viên hiện tại'); // Hoặc lấy từ biến global
+            formData.append('file', fileUpload);
+
+            fetch('upload.php', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Tải lên thành công');
+                    document.getElementById('file-name').value = '';
+                    document.getElementById('file-description').value = '';
+                    document.getElementById('file-upload').value = '';
+                    openTab('files');
+                    loadFiles(); // refresh danh sách
+                } else {
+                    alert(data.message || 'Tải lên thất bại');
+                }
+            });
+        }
+
+            
+        
+        // Tab navigation
+        function openTab(tabName) {
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            const tabs = document.getElementsByClassName('tab');
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+            
+            document.getElementById(tabName).classList.add('active');
+            
+            // Find and activate the tab button
+            const tabButtons = document.getElementsByClassName('tab');
+            for (let i = 0; i < tabButtons.length; i++) {
+                if (tabButtons[i].textContent.toLowerCase().includes(tabName)) {
+                    tabButtons[i].classList.add('active');
+                }
+            }
+        }
+        
+        // Login function
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
+
+            fetch('login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&role=${encodeURIComponent(role)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    currentRole = data.role;
+                    document.getElementById('login-container').style.display = 'none';
+                    document.getElementById('main-container').style.display = 'block';
+                    document.getElementById('upload-tab').style.display = currentRole === 'teacher' ? 'block' : 'none';
+                    displayFiles(mockFiles); // Cái này sau bạn sẽ thay bằng lấy từ database
+                } else {
+                    alert(data.message || 'Đăng nhập thất bại!');
+                }
+            });
+        }
+
+
+        
+        // Logout function
+        function logout() {
+            currentRole = null;
+            document.getElementById('login-container').style.display = 'block';
+            document.getElementById('main-container').style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+    </script>
+</body>
+</html>
