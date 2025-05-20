@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị - Hồ sơ Giảng viên</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="admin-header">
+        <div class="container">
+            <h1>Quản trị Hồ sơ Giảng viên</h1>
+            <a href="logout.php" class="logout-btn">Đăng xuất</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="alert-box" class="alert alert-success hidden">
+            Thông tin đã được cập nhật thành công!
+        </div>
+
+        <div class="admin-layout">
+            <aside class="sidebar">
+                <nav>
+                    <a href="#personal-info" class="nav-link active" data-tab="personal-info">Thông tin cá nhân</a>
+                    <a href="#publications" class="nav-link" data-tab="publications">Thành tựu cá nhân</a>
+                    <a href="#projects" class="nav-link" data-tab="projects">Dự án nghiên cứu</a>
+                    <a href="#schedule" class="nav-link" data-tab="schedule">Lịch dạy & Làm việc</a>
+                    <a href="#account" class="nav-link" data-tab="account">Cài đặt tài khoản</a>
+                </nav>
+            </aside>
+
+            <div class="content-area">
+                <!-- Thông tin cá nhân -->
+                <section id="personal-info" class="tab-content active">
+                    <h2 class="section-title">Thông tin cá nhân</h2>
+
+                    <div class="form-group">
+                        <label for="introduction">Giới thiệu</label>
+                        <textarea id="introduction" class="form-control">TS. Nguyễn Văn An hiện đang là giảng viên tại Khoa Công nghệ Thông tin, Đại học Quốc gia Hà Nội. Ông nhận bằng Tiến sĩ tại Đại học Stanford, Hoa Kỳ năm 2015. Các hướng nghiên cứu chính bao gồm học máy, trí tuệ nhân tạo, và xử lý ngôn ngữ tự nhiên.
+
+Với hơn 10 năm kinh nghiệm trong lĩnh vực công nghệ thông tin, TS. An đã có nhiều đóng góp quan trọng trong việc phát triển các mô hình học máy ứng dụng trong y tế và giáo dục.</textarea>
+                    </div>
+
+                    <h3>Thông tin liên hệ</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" value="an.nguyenvan@vnu.edu.vn">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại</label>
+                            <input type="text" id="phone" class="form-control" value="+84-123-456-789">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="office">Văn phòng</label>
+                        <input type="text" id="office" class="form-control" value="Phòng 305, Toà nhà E3, 144 Xuân Thuỷ, Cầu Giấy, Hà Nội">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="scholar">Google Scholar</label>
+                            <input type="url" id="scholar" class="form-control" value="https://scholar.google.com/">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="researchgate">ResearchGate</label>
+                            <input type="url" id="researchgate" class="form-control" value="https://www.researchgate.net/">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="savePersonalInfo">Lưu thông tin</button>
+                </section>
+
+                <!-- Bài báo khoa học -->
+                <section id="publications" class="tab-content">
+                    <h2 class="section-title">Bài báo khoa học</h2>
+
+                    <div class="card" id="publication-list">
+                        <div class="card" data-id="pub1">
+                            <div class="card-header">
+                                <h3>Deep Learning Approaches for Vietnamese Text Classification: A Comprehensive Study</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-sm btn-primary edit-pub">Sửa</button>
+                                    <button class="btn btn-sm btn-danger delete-pub">Xóa</button>
+                                </div>
+                            </div>
+                            <p><strong>Tác giả:</strong> Nguyen Van An, Tran Thi B, Le Van C</p>
+                            <p><strong>Tạp chí:</strong> Journal of Computer Science and Cybernetics, 2023, 39(2), pp. 165-180</p>
+                            <p><strong>Link PDF:</strong> <a href="#">Xem PDF</a></p>
+                        </div>
+
+                        <div class="card" data-id="pub2">
+                            <div class="card-header">
+                                <h3>Natural Language Processing for Vietnamese: Challenges and Opportunities</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-sm btn-primary edit-pub">Sửa</button>
+                                    <button class="btn btn-sm btn-danger delete-pub">Xóa</button>
+                                </div>
+                            </div>
+                            <p><strong>Tác giả:</strong> Nguyen Van An, Pham D, Hoang E, et al.</p>
+                            <p><strong>Tạp chí:</strong> IEEE Transactions on Natural Language Processing, 2022, 15(4), pp. 423-437</p>
+                            <p><strong>Link PDF:</strong> <a href="#">Xem PDF</a></p>
+                        </div>
+
+                        <div class="card" data-id="pub3">
+                            <div class="card-header">
+                                <h3>Multi-task Learning for Vietnamese Named Entity Recognition and Relation Extraction</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-sm btn-primary edit-pub">Sửa</button>
+                                    <button class="btn btn-sm btn-danger delete-pub">Xóa</button>
+                                </div>
+                            </div>
+                            <p><strong>Tác giả:</strong> Le F, Nguyen Van An, Vu G</p>
+                            <p><strong>Tạp chí:</strong> ACM International Conference on Asian Language Processing, 2021, pp. 87-96</p>
+                            <p><strong>Link PDF:</strong> <a href="#">Xem PDF</a></p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="addPublication">Thêm bài báo mới</button>
+
+                    <!-- Modal thêm/sửa bài báo -->
+                    <div class="modal hidden" id="publicationModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 id="pubModalTitle">Thêm bài báo mới</h3>
+                                <button class="close-btn">&times;</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="pub-title">Tiêu đề</label>
+                                <input type="text" id="pub-title" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="pub-authors">Tác giả</label>
+                                <input type="text" id="pub-authors" class="form-control" placeholder="Ngăn cách bằng dấu phẩy">
+                            </div>
+                            <div class="form-group">
+                                <label for="pub-journal">Tạp chí/Hội nghị</label>
+                                <input type="text" id="pub-journal" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="pub-pdf">File PDF</label>
+                                <input type="file" id="pub-pdf" class="form-control" accept="application/pdf">
+                            </div>
+                            <button class="btn btn-primary" id="savePublication">Lưu bài báo</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Dự án nghiên cứu -->
+                <section id="projects" class="tab-content">
+                    <h2 class="section-title">Dự án nghiên cứu</h2>
+
+                    <div id="project-list">
+                        <div class="card" data-id="proj1">
+                            <div class="card-header">
+                                <h3>Ứng dụng AI trong chẩn đoán y tế</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-sm btn-primary edit-project">Sửa</button>
+                                    <button class="btn btn-sm btn-danger delete-project">Xóa</button>
+                                </div>
+                            </div>
+                            <p>Sử dụng học sâu để phát hiện các dấu hiệu bệnh lý từ hình ảnh y tế.</p>
+                            <p><strong>File đính kèm:</strong> <a href="#">Tải dữ liệu</a></p>
+                        </div>
+
+                        <div class="card" data-id="proj2">
+                            <div class="card-header">
+                                <h3>Xử lý ngôn ngữ tiếng Việt</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-sm btn-primary edit-project">Sửa</button>
+                                    <button class="btn btn-sm btn-danger delete-project">Xóa</button>
+                                </div>
+                            </div>
+                            <p>Phát triển các mô hình ngôn ngữ tiên tiến cho tiếng Việt.</p>
+                            <p><strong>File đính kèm:</strong> <a href="#">Tải mã nguồn</a></p>
+                        </div>
+
+                        <div class="card" data-id="proj3">
+                            <div class="card-header">
+                                <h3>Hệ thống đánh giá học tập thông minh</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-sm btn-primary edit-project">Sửa</button>
+                                    <button class="btn btn-sm btn-danger delete-project">Xóa</button>
+                                </div>
+                            </div>
+                            <p>Xây dựng hệ thống đánh giá tự động dựa trên AI.</p>
+                            <p><strong>File đính kèm:</strong> <a href="#">Xem demo</a></p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="addProject">Thêm dự án mới</button>
+
+                    <!-- Modal thêm/sửa dự án -->
+                    <div class="modal hidden" id="projectModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 id="projModalTitle">Thêm dự án mới</h3>
+                                <button class="close-btn">&times;</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="proj-title">Tên dự án</label>
+                                <input type="text" id="proj-title" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="proj-desc">Mô tả</label>
+                                <textarea id="proj-desc" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="proj-file">File đính kèm:</label>
+                                <input type="file" id="proj-file" class="form-control">
+                            </div>
+                             <div class="form-group">
+                                <label for="proj-link-text">Văn bản liên kết</label>
+                                <input type="text" id="proj-link-text" class="form-control" value="Tải xuống">
+                            </div>
+                            <button class="btn btn-primary" id="saveProject">Lưu dự án</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Lịch dạy & Giờ làm việc -->
+                <section id="schedule" class="tab-content">
+                    <h2 class="section-title">Lịch dạy và giờ làm việc</h2>
+
+                    <div class="form-group">
+                        <label>Chọn loại hoạt động</label>
+                        <div class="checkbox-container">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="class-filter" checked>
+                                <label for="class-filter">Lớp học</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="office-filter" checked>
+                                <label for="office-filter">Giờ làm việc</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-container">
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Thời gian</th>
+                                    <th>Thứ 2</th>
+                                    <th>Thứ 3</th>
+                                    <th>Thứ 4</th>
+                                    <th>Thứ 5</th>
+                                    <th>Thứ 6</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>7:30 - 9:30</td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="">Trống</option>
+                                            <option value="class" selected>Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" value="CS101, Phòng A303">
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="" selected>Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" disabled>
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="">Trống</option>
+                                            <option value="class" selected>Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" value="CS101, Phòng A303">
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="" selected>Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" disabled>
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="" selected>Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" disabled>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>9:45 - 11:45</td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="" selected>Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" disabled>
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="">Trống</option>
+                                            <option value="class" selected>Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" value="CS305, Phòng B401">
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="" selected>Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" disabled>
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="">Trống</option>
+                                            <option value="class" selected>Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" value="CS305, Phòng B401">
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="" selected>Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" disabled>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>13:00 - 15:00</td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="">Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office" selected>Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" value="Phòng 305">
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="" selected>Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" disabled>
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="">Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office" selected>Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" value="Phòng 305">
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="" selected>Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" disabled>
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="">Trống</option>
+                                            <option value="class" selected>Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" value="CS501, Phòng C202">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>15:15 - 17:15</td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="" selected>Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" disabled>
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="">Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office" selected>Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" value="Phòng 305">
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="" selected>Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" disabled>
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="">Trống</option>
+                                            <option value="class">Lớp học</option>
+                                            <option value="office" selected>Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" value="Phòng 305">
+                                    </td>
+                                    <td>
+                                        <select class="form-control schedule-type">
+                                            <option value="">Trống</option>
+                                            <option value="class" selected>Lớp học</option>
+                                            <option value="office">Giờ làm việc</option>
+                                        </select>
+                                        <input type="text" class="form-control schedule-details" placeholder="Chi tiết" value="CS501, Phòng C202">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button class="btn btn-primary" id="saveSchedule">Lưu lịch</button>
+                </section>
+
+                <!-- Cài đặt tài khoản -->
+                <section id="account" class="tab-content">
+                    <h2 class="section-title">Cài đặt tài khoản</h2>
+
+                    <div class="form-group">
+                        <label for="username">Tên đăng nhập</label>
+                        <input type="text" id="username" class="form-control" value="nguyenvanan" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="current-password">Mật khẩu hiện tại</label>
+                        <input type="password" id="current-password" class="form-control">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="new-password">Mật khẩu mới</label>
+                            <input type="password" id="new-password" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-password">Xác nhận mật khẩu mới</label>
+                            <input type="password" id="confirm-password" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cài đặt riêng tư</label>
+                        <div class="checkbox-container">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="show-email" checked>
+                                <label for="show-email">Hiển thị email</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="show-phone" checked>
+                                <label for="show-phone">Hiển thị số điện thoại</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="show-schedule" checked>
+                                <label for="show-schedule">Hiển thị lịch làm việc</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="saveAccount">Lưu thay đổi</button>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="admin-footer">
+        <div class="container">
+            <p>&copy; 2024 Quản trị Hồ sơ Giảng viên</p>
+        </div>
+    </footer>
+
+    <div class="modal-overlay hidden" id="modal-overlay"></div>
+
+    <script src="js/admin-script.js"></script>
+</body>
+</html>

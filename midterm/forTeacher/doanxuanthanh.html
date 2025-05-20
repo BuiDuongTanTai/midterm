@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hồ sơ cá nhân</title>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="bg-primary text-white text-center py-4">
+    <h1>Nguyễn Văn A</h1>
+    <p>Giảng viên – Đại học Công nghệ</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Profile</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#thong-tin">Thông tin</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cong-tac">Công tác</a></li>
+          <li class="nav-item"><a class="nav-link" href="#lich-giang">Lịch giảng</a></li>
+          <li class="nav-item"><a class="nav-link" href="#du-an">Dự án</a></li>
+          <li class="nav-item"><a class="nav-link" href="#bai-bao">Bài báo</a></li>
+          <li class="nav-item"><a class="nav-link" href="#thong-bao">Thông báo</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main container -->
+  <div class="container my-5">
+
+    <!-- Thông tin cá nhân -->
+    <section id="thong-tin" class="mb-5">
+      <h2 class="text-primary mb-3">Thông tin cá nhân</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Họ tên:</strong> Nguyễn Văn A</p>
+          <p><strong>Email:</strong> nguyenvana@utech.edu.vn</p>
+          <p><strong>Điện thoại:</strong> 0123 456 789</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nơi công tác -->
+    <section id="cong-tac" class="mb-5">
+      <h2 class="text-primary mb-3">Nơi công tác</h2>
+      <p>Khoa Công nghệ Thông tin, Trường Đại học Công nghệ</p>
+    </section>
+
+    <!-- Lịch giảng dạy -->
+    <section id="lich-giang" class="mb-5">
+      <h2 class="text-primary mb-3">Lịch giảng dạy</h2>
+      <ul class="list-group">
+        <li class="list-group-item">Thứ 2: Lập trình Web (08:00 - 10:00)</li>
+        <li class="list-group-item">Thứ 4: Cơ sở dữ liệu (13:30 - 15:30)</li>
+        <li class="list-group-item">Thứ 6: Kỹ thuật lập trình (08:00 - 10:00)</li>
+      </ul>
+    </section>
+
+    <!-- Dự án cá nhân -->
+    <section id="du-an" class="mb-5">
+      <h2 class="text-primary mb-3">Các dự án cá nhân</h2>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Hệ thống chia sẻ tài liệu</h5>
+              <p class="card-text">Nền tảng quản lý và chia sẻ học liệu giữa giảng viên và sinh viên.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Quản lý lớp học</h5>
+              <p class="card-text">Ứng dụng hỗ trợ điểm danh, giao bài và theo dõi tiến độ học tập.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Học lập trình online</h5>
+              <p class="card-text">Trang web học lập trình trực tuyến với bài tập và chấm điểm tự động.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bài báo -->
+    <section id="bai-bao" class="mb-5">
+      <h2 class="text-primary mb-3">Các bài báo</h2>
+      <ul class="list-group">
+        <li class="list-group-item"><a href="#">Phân tích hiệu năng các hệ quản trị CSDL</a></li>
+        <li class="list-group-item"><a href="#">Ứng dụng AI trong giáo dục</a></li>
+        <li class="list-group-item"><a href="#">Thiết kế hệ thống học liệu mở</a></li>
+      </ul>
+    </section>
+
+    <!-- Thông báo -->
+    <section id="thong-bao" class="mb-5">
+      <h2 class="text-primary mb-3">Thông báo</h2>
+      <div class="alert alert-warning">
+        <strong>[12/04/2025]</strong> Sinh viên lớp Lập trình Web nộp bài tập trước 15/04.
+      </div>
+      <div class="alert alert-info">
+        <strong>[10/04/2025]</strong> Buổi học thứ 6 tuần này chuyển sang học online.
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4">
+    &copy; 2025 Nguyễn Văn A. All rights reserved.
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
